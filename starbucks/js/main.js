@@ -152,5 +152,16 @@ floatingObject('.floating3', 1.5, 20)
 //     }
 // })
 
+const spyEls = document.querySelectorAll("section.scroll-spy")
+spyEls.forEach(function(spyEls) {
+    new ScrollMagic.Scene({
+        triggerElement: spyEls,
+        triggerHook: 0.8
+    }).setClassToggle(spyEls,"show").addTo(new ScrollMagic.Controller());
+
+    
+})
+
+
 
 

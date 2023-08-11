@@ -86,6 +86,30 @@ ul {
     background-color: #FFF;
   }
 
+  /* ScrollMagic */
+  /* .back-to-position {
+    opacity: 0;
+    transition: 1s;
+  }
+  .back-to-position.to-right {
+    transform: translateX(-150px);
+  }
+  .back-to-position.to-left {
+    transform: translateX(150px);
+  }
+  .show .back-to-position {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .show .back-to-position.delay-1{
+    transition-delay: .2s;
+  }
+  .show .back-to-position.delay-2{
+    transition-delay: .4s;
+  }
+  .show .back-to-position.delay-3{
+    transition-delay: .6s; */
+  }
 
 /*-------------------------------------------------------------------------*/
 /* HEADER */
@@ -636,7 +660,7 @@ header .badges .badge {
 /*-----------------------------------------------------------------*/
 /* SEASON PRODUCT */
 
-.season {
+/* .season {
     background-image: url(/images/season_product_bg.jpg);
     height: 400px;
     
@@ -666,4 +690,74 @@ header .badges .badge {
 }
 .season .inner .btn.season-fade {
     opacity: 0;
+} */
+
+.season{
+    background-image: url(/images/season_product_bg.jpg);
+    height: 400px;
+    position: relative;
 }
+.season .inner{
+    display: flex;
+}
+.season .inner .product{
+    z-index: 3;
+}
+.season .inner .innerText{
+    top: 150px;
+    right: 80px;
+    position: absolute;
+}
+.season .inner .innerText .text1{
+    margin-bottom: 10px;
+}
+.season .inner .innerText .text2{
+    margin-bottom: 10px;
+}
+.season .inner .innerText .btn{
+    
+}
+
+
+/* RESERVE COFFEE */
+.reserve{
+    background-image: url(/images/reserve_bg.jpg);
+    height: 400px;
+    position: relative;
+}
+.reserve .inner{
+    display: flex;
+}
+.reserve .inner .innerText{
+    display: flex;
+    position: absolute;
+    top: 90px;
+    width: 612px;
+    flex-wrap: wrap;
+}
+.reserve .inner .innerText .logo{}
+.reserve .inner .innerText .text{
+    height: 120px;
+    margin-left: 10px;
+}
+.reserve .inner .innerText .btn{
+    position: absolute;
+    left: 152px;
+    top: 120px;
+    
+}
+.reserve .inner .img{
+    position: absolute;
+    right: 0;
+}
+
+
+/* PICK FAVORITE */
+.pick{
+    background-image: url(/images/favorite_bg.jpg);
+    height: 706.3px;
+}
+.pick .inner{}
+.pick .inner .text1{}
+.pick .inner .text2{}
+.pick .inner .btn{}

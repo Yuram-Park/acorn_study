@@ -48,8 +48,10 @@
 
     <!-- https://swiperjs.com -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.js"></script>
+    
+    <!--ScrollMagic-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script defer src="./js/youtube.js"></script>
     <script defer src="./js/main.js"></script>
@@ -506,7 +508,7 @@
     </section>
 
     <!-- SEASON PRODUCT -->
-    <section class="season">
+    <!-- <section class="season">
         <div class="inner">
             <img src="images/season_product_image.png" alt="" class="season-fade Prd"/>
             <div class="innerText">
@@ -515,7 +517,41 @@
                 <div class="btn season-fade">자세히 보기</div>
             </div>
         </div>
+    </section> -->
+
+    <section class="season scroll-spy">
+        <div class="inner">
+            <img src="images/season_product_image.png" alt="" class="product back-to-position to-right"/>
+            <div class="innerText">
+                <img src="images/season_product_text1.png" alt="" class="text1 back-to-position to-left delay-1"/>
+                <img src="images/season_product_text2.png" alt="" class="text2 back-to-position to-left delay-2"/>
+                <div class="btn back-to-position to-left delay-3">자세히 보기</div>
+            </div>
+        </div>
     </section>
+
+    <!--RESERVE COFFEE-->
+    <section class="reserve scroll-spy">
+        <div class="inner">
+            <div class="innerText">
+                <img src="images/reserve_logo.png" alt="" class="logo back-to-position to-right"/>
+                <img src="images/reserve_text.png" alt="" class="text back-to-position to-right"/>
+                <div class="btn back-to-position to-right">자세히 보기</div>
+            </div>
+            <img src="images/reserve_image.png" alt="" class="img back-to-position to-left"/>
+        </div>
+    </section>
+
+    <!--PICK FAVORITE-->
+    <section class="pick">
+        <div class="inner">
+            <img src="images/favorite_text1.png" alt="" class="text1 back-to-position to-right"/>
+            <img src="images/favorite_text2.png" alt="" class="text2 back-to-position to-right"/>
+            <div class="btn back-to-position to-right">자세히 보기</div>
+        </div>
+    </section>
+    
+    
 </body>
 
 </html>
