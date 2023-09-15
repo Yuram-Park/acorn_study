@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
+    <!-- https://swiperjs.com -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: orange;
+            margin: 0px;
+        }
+        .swiper {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'vertical',
+            loop: true,
+            autoplay: true
+        });
+    </script>
+</head>
+
+<body>
+    <div>쫘이쫘이쫘식아</div>
+    <ul>
+        <li>d</li>
+        <li>f</li>
+    </ul>
+    <!-- BEM(Block Elemnet Modifier) : 요소__일부분, 요소--상태 -->
+    <div class="container">
+        <div class="name"></div>
+        <div class="item">
+            <div class="name"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container__name"></div> <!-- 요소의 일부분으로서 사용-->
+        <div class="item">
+            <div class="item__name"></div>
+        </div>
+    </div>
+
+    <div class="btn primary"></div>
+
+    <div class="btn success"></div>
+    <div class="btn error"></div>
+
+    <div class="btn btn--primary"></div> <!-- 요소의 상태 표시-->
+    <div class="btn btn--success"></div>
+    <div class="btn btn--error"></div>
+
+    <hr />
+
+    <!-- https://swiperjs.com -->
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        
+        
+    </div>
+</body>
+
+</html>

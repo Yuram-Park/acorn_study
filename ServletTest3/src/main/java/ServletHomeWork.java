@@ -1,0 +1,79 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ServletHomeWork extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("euc-kr");
+		
+		String id = req.getParameter("id");
+		String pw = req.getParameter("pw");
+		String gender = req.getParameter("gender");
+		String[] hobbies = req.getParameterValues("hobby");
+		String job = req.getParameter("job");
+		String say = req.getParameter("say");
+		String cook = req.getParameter("cook");
+		System.out.println(cook);
+		
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body>");
+		
+		out.println("<h3>가입 신청 내역</h3>");
+		out.println("아이디: " + id + "<br/>");
+		out.println("비밀번호: "+ pw + "<br/>");
+		out.println("성별: "+ gender + "<br/>");
+		
+		if(hobbies != null) {
+			out.print("취미: <ul>");
+			for(String hobby : hobbies ) {
+				out.print("<li>" + hobby + "</li>");
+			}
+		}
+		out.println("</ul>");
+		out.println("직업: " + job + "<br/>");
+		out.println("하고 싶은 말: " + say + "<br/>");
+		out.println("</body></html>");
+		out.close();
+		
+		if(cook.toString().equals("on")) {
+			Cookie idCookie = new Cookie("id", id);
+			Cookie pwCookie = new Cookie("pw", pw);
+			Cookie genderCookie = new Cookie("gender", gender);
+			//Cookie hobbyCookie = new Cookie ("hobby", hobbies );
+			//for(int i=0; i<hobbies.length; i++) {
+			//	hobbyCookie = new Cookie ("hobby", hobbies[i] );
+			//}
+			Cookie jobCookie = new Cookie("job", job);
+			Cookie sayCookie = new Cookie("say", say);
+			
+			idCookie.setMaxAge(60 * 60 * 24);
+			pwCookie.setMaxAge(60 * 60 * 24);
+			genderCookie.setMaxAge(60 * 60 * 24);
+			//hobbyCookie.setMaxAge(60 * 60 * 24);
+			jobCookie.setMaxAge(60 * 60 * 24);
+			sayCookie.setMaxAge(60 * 60 * 24);
+			
+			resp.addCookie(idCookie);
+			resp.addCookie(pwCookie);
+			resp.addCookie(genderCookie);
+			resp.addCookie(jobCookie);
+			resp.addCookie(sayCookie);
+		}
+		
+		
+	}
+	
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>여기는 index.html이다</h1>
+	
+	이름: <input type = "text" name="name"><br><br>
+	나이: <input type = "text" name="age"><br><br>
+	
+</body>
+</html>

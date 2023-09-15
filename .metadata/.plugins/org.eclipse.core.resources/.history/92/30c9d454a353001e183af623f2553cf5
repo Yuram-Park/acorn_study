@@ -1,0 +1,36 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ServletHomeWork extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("euc-kr");
+		
+		String id = req.getParameter("id");
+		String pw = req.getParameter("pw");
+		String[] gender = req.getParameterValues("gender");
+		String[] hobby = req.getParameterValues("hobby");
+		String[] job = req.getParameterValues("job");
+		String say = req.getParameter("say");
+		
+		
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body>");
+		
+		
+		
+	}
+	
+}

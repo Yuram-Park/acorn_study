@@ -1,0 +1,51 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ServletHomeWork extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("euc-kr");
+		
+		String id = req.getParameter("id");
+		String pw = req.getParameter("pw");
+		String[] genders = req.getParameterValues("gender");
+		String[] hobbies = req.getParameterValues("hobby");
+		String[] jobs = req.getParameterValues("job");
+		String say = req.getParameter("say");
+		String cook = req.getParameter("cook");
+		System.out.println(cook);
+		
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body>");
+		
+		out.println("<h3>가입 신청 내역</h3>");
+		out.println("아이디: " + id);
+		out.println("비밀번호: "+ pw);
+		out.println("성별: "+ genders);
+		
+		if(hobbies != null) {
+			out.print("취미: <ul>");
+			for(String hobby : hobbies ) {
+				out.print("<li>" + hobby + "</li>");
+			}
+		}
+		out.println("<ul>");
+		out.println("직업: " + jobs);
+		out.println("하고 싶은 말: " + say);
+		
+		
+	}
+	
+}
