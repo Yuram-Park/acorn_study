@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="dbcp.DBConnectionMgr" %>
 
 <%
 request.setCharacterEncoding("euc-kr");
@@ -20,14 +24,14 @@ String pass = request.getParameter("pass");
 Connection con = null;
 PreparedStatement stmt = null;
 ResultSet rs = null;
-	
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-String id = "scott";
-String pw = "1111";
+DBConnectionMgr pool = null;
+Context ctx = new InitialContext();
+DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+
 
 try{
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	con = DriverManager.getConnection(url, id, pw);
+	
+	con = ds.getConnection();
 	
 	
 	String sql = "select b_pass from tblboard where b_num=?";

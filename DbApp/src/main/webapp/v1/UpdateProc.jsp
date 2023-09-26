@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="dbcp.DBConnectionMgr" %>
 
 <%
 request.setCharacterEncoding("euc-kr");
@@ -20,14 +21,13 @@ String pass = request.getParameter("pass");
 Connection con = null;
 PreparedStatement stmt = null;
 ResultSet rs = null;
+DBConnectionMgr pool = null;
 	
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-String id = "scott";
-String pw = "1111";
+
 
 try{
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	con = DriverManager.getConnection(url, id, pw);
+	pool = DBConnectionMgr.getInstance();
+	con = pool.getConnection();
 	
 	
 	String sql = "select b_pass from tblboard where b_num=?";
@@ -61,8 +61,6 @@ catch(Exception e){
 	System.out.println("UpdateProc.jsp: " + e);
 }
 finally{
-	if(stmt != null) stmt.close();
-	if(con != null)	con.close();
-	if(rs != null) rs.close();
+	pool.freeConnection(con, stmt, rs);
 }
 %>

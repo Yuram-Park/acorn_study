@@ -16,5 +16,11 @@
 	%>
 	
 	DB 연결 주소: <%=conn %>
+	
+	<%
+		conn.close();
+	%>
+	
+	
 </body>
 </html>

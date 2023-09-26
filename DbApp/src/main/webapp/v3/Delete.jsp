@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page import="java.sql.*" %>
-<html>
+<%@ page import="mybean.*" %>
 <head><title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script>
@@ -15,22 +14,16 @@
 </script>
 </head>
 <body>
+
+<jsp:useBean id="dao" class="mybean.BoardDao"/>
 <%
-	String b_num = request.getParameter("b_num");
-	String pass = request.getParameter("pass");
-
-
-Connection con = null;
-PreparedStatement stmt = null;
-ResultSet rs = null;
+	Vector vec = (Vector)dao.getBoardList();
 	
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-String id = "scott";
-String pw = "1111";
+
 
 try{
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	con = DriverManager.getConnection(url, id, pw);
+	
+	con = ds.getConnection();
 	
 	
 	String sql = "select b_pass from tblboard where b_num=?";

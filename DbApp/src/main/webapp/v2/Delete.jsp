@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <html>
 <head><title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -23,14 +26,14 @@
 Connection con = null;
 PreparedStatement stmt = null;
 ResultSet rs = null;
+Context ctx = new InitialContext();
+DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
 	
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-String id = "scott";
-String pw = "1111";
+
 
 try{
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	con = DriverManager.getConnection(url, id, pw);
+	
+	con = ds.getConnection();
 	
 	
 	String sql = "select b_pass from tblboard where b_num=?";

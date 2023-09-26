@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="dbcp.DBConnectionMgr" %>
 <html>
 <head> <title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -21,10 +22,7 @@
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "scott";
-	String pw = "1111";
+	DBConnectionMgr pool = null;
 
 	String name = "";
 	String regdate = "";
@@ -36,8 +34,8 @@
 	int count = 0;
 	
 	try{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
+		pool = DBConnectionMgr.getInstance();
+		con = pool.getConnection();
 		
 		String sql = "select * from tblboard where b_num=" + b_num;
 		stmt = con.createStatement();
@@ -56,9 +54,7 @@
 	}
 	catch(Exception e){ System.out.println("Update.jsp: " + e); }
 	finally{
-		if(rs != null)	rs.close();
-		if(stmt != null) stmt.close();
-		if(con != null)	con.close();
+		pool.freeConnection(con, stmt, rs);
 	}
 %>
 <center>
