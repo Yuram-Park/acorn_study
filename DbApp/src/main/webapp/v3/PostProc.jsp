@@ -1,55 +1,49 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.InitialContext" %>
-<%@ page import="javax.naming.Context" %>
-<%@ page import="dbcp.DBConnectionMgr" %>
+<jsp:useBean id="dao" class="mybean.BoardDao"/>
+<jsp:useBean id="dto" class="mybean.Board"/>
+
+
+
 <%
 	request.setCharacterEncoding("euc-kr");
+%>
+<jsp:setProperty property="*" name="dto" /> <!-- java 코드 대신에 action 태그로 일일이/ *쓸 경우 넘어오는 모든 데이터 한번에 넣어줄 수 있다 -->
 
+
+
+<%/*
 	String name = request.getParameter("name");
 	String email = request.getParameter("email");
 	String home = request.getParameter("homepage");
 	String subject = request.getParameter("subject");
 	String content = request.getParameter("content");
 	String pass = request.getParameter("pass");
-	
-	//out.println(name + ", " + email + ", " + home + ", " + subject +
-	//		", " + content + ", " + pass);
-	
-	Connection con = null;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
-	Context ctx = new InitialContext();
-	DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
-	
-	
-	try{
 		
-		con = ds.getConnection();
-			
-		String sql = "insert into tblboard(b_num," +
-				"b_name, b_email, b_homepage, b_subject, b_content, " +
-				"b_pass, b_count, b_ip, b_regdate, pos, depth) " +
-				"values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
-		stmt = con.prepareStatement(sql);
-		stmt.setString(1, name);
-		stmt.setString(2, email);
-		stmt.setString(3, home);
-		stmt.setString(4, subject);
-		stmt.setString(5, content);
-		stmt.setString(6, pass);
-		stmt.setString(7, request.getRemoteAddr());
-		stmt.executeUpdate();
+	dto.setB_name(name);
+	dto.setB_email(email);
+	dto.setB_homepage(home);
+	dto.setB_subject(subject);
+	dto.setB_content(content);
+	dto.setB_pass(pass);
+	dto.setB_ip(request.getRemoteAddr());
+	*/
 
-		response.sendRedirect("List.jsp");
-	}
-	catch(Exception e){
-		System.out.println("PostProc.jsp: " + e);
-	}
-	finally{
-		if(rs !=null) rs.close();
-		if(stmt !=null) stmt.close();
-		if(con !=null) con.close();
-	}
+	dao.setBoard(dto);
+	
+	response.sendRedirect("List.jsp");
 %>
+<!--<%= dto.getB_name()%><br>
+<%= dto.getB_email()%><br>
+<%= dto.getB_homepage()%><br>
+<%= dto.getB_subject()%><br>
+<%= dto.getB_content()%><br>
+<%= dto.getB_pass()%><br>
+<%= dto.getB_ip()%><br>
+
+<jsp:getProperty property="b_name" name="dto"/><br>
+<jsp:getProperty property="b_email" name="dto"/><br>
+<jsp:getProperty property="b_homepage" name="dto"/><br>
+<jsp:getProperty property="b_subject" name="dto"/><br>
+<jsp:getProperty property="b_content" name="dto"/><br>
+-->
+

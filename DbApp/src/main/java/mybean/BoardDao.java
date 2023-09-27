@@ -100,7 +100,80 @@ public class BoardDao {
 		}
 		
 	}
-				
 		
+	
+	//PostProc.jsp
+	public void setBoard(Board board) {
+		String sql = "insert into tblboard(b_num," +
+				"b_name, b_email, b_homepage, b_subject, b_content, " +
+				"b_pass, b_count, b_ip, b_regdate, pos, depth) " +
+				"values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement(sql);
+			
+			stmt.setString(1, board.getB_name());
+			stmt.setString(2, board.getB_email());
+			stmt.setString(3, board.getB_homepage());
+			stmt.setString(4, board.getB_subject());
+			stmt.setString(5, board.getB_content());
+			stmt.setString(6, board.getB_pass());
+			stmt.setString(7, board.getB_ip());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("setBoard:" + e);
+		}
+		finally {
+			freeConnection();
+		}
+	}
+	
+	
+	//Read.jsp
+	public void setRead() {
+		String sql = "select * from tblboard where b_num=?";
+		Vector vector = new Vector();
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery(sql);
+			stmt.setString(1, rs.getString("b_num"));
+			
+			if(rs.next()) {
+				Board board = new Board();
+				board.setB_name(rs.getString("b_name"));
+				board.setB_regdate(rs.getString("b_regdate"));
+				board.setB_email(rs.getString("b_email"));
+				board.setB_homepage(rs.getString("b_homepage"));
+				board.setB_subject(rs.getString("b_subject"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_ip(rs.getString("b_ip"));
+				
+				vector.add(board);
+				
+			}
+		}
+		catch (Exception e) {
+			System.out.println("setRead:" + e);
+		}
+		finally {
+			freeConnection();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	
+	
 	}
 

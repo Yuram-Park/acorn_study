@@ -23,15 +23,6 @@
 
 try{
 	
-	con = ds.getConnection();
-	
-	
-	String sql = "select b_pass from tblboard where b_num=?";
-	stmt = con.prepareStatement(sql);
-	stmt.setString(1, b_num);
-	rs = stmt.executeQuery();
-	rs.next();
-	
 	if(pass.equals(rs.getString("b_pass"))){
 		sql = "delete from tblboard where b_num=?";
 		stmt = con.prepareStatement(sql);
