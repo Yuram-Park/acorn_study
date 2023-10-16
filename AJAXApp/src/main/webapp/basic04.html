@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    let httpRequest = null;
+    
+    function fnSubmit(){
+        httpRequest = new XMLHttpRequest();
+        
+        httpRequest.open("GET", "basic04.jsp", true); 
+        httpRequest.onreadystatechange = fnCallBack; 
+        httpRequest.send(null); 
+    }
+    
+    function fnCallBack(){ 
+        
+        if(httpRequest.readyState == 4){
+            if(httpRequest.status == 200) {
+                let txtDoc = eval("(" + httpRequest.responseText + ")"); // 서버로 데이터 받아올 때 자바스크립트 객체로 변환시켜줌(eval)
+                
+                if(txtDoc.code == "success"){
+                    let mem = txtDoc.data.member;
+                    alert(mem.name + "," + mem.id + "," + mem.age);
+                }
+            } else{
+                alert("무언가 잘못됐다." + httpRequest.status);
+            }
+        }
+    }
+    window.onload = function(){
+        fnSubmit();
+    }
+    
+</script>
+</head>
+<body>
+    <h1>서버로부터 JSON타입의 데이터를 받는 예제</h1>
+</body>
+</html>

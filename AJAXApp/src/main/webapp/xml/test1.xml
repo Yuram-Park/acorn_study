@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 프롤로그 선언문 -->
+<books> <!-- root element -->
+	<book>
+		<!-- <title>XML &amp; JAVA</title> -->
+		<title><![CDATA[XML & JAVA]]></title>
+		<publisher>자바 출판사</publisher>
+	</book>
+</books>

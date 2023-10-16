@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    let httpRequest = null;
+    
+    function fnSubmit(){
+        httpRequest = new XMLHttpRequest();
+        
+        httpRequest.open("GET", "basic05.jsp", true); 
+        httpRequest.onreadystatechange = fnCallBack; 
+        httpRequest.send(null); 
+    }
+    
+    function fnCallBack(){ 
+        
+        if(httpRequest.readyState == 4){
+            if(httpRequest.status == 200) {
+                let txtDoc = eval("(" + httpRequest.responseText + ")"); // 서버로 데이터 받아올 때 자바스크립트 객체로 변환시켜줌(eval)
+                
+                if(txtDoc[0].no == "1"){
+                    let mem = txtDoc[0]
+                    alert(mem.name + "," + mem.job );
+                }
+            } else{
+                alert("무언가 잘못됐다." + httpRequest.status);
+            }
+        }
+    }
+    window.onload = function(){
+        fnSubmit();
+    }
+    
+</script>
+</head>
+<body>
+
+</body>
+</html>

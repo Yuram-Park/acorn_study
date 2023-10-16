@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	// XMLHttpRequest 없었을 때 (옛날버전)
+	/*
+	function fnGetInfo(){
+		let userNum = document.getElementById("userNum").value;
+		document.getElementById("hiddenFrame").src="basic02.jsp?userNum="+userNum; // hiddenFrame에 들어갈 서버 페이지 지정
+		
+	}
+	
+	function fnSetData(){ // iframe에 받은 데이터를 html안에 뿌려주기 위한 함수
+		document.getElementById("userName").value = name;
+		document.getElementById("userGender").value = gender;
+		document.getElementById("userAddr").value = addr;
+		document.getElementById("userTel").value = tel;
+	}
+	*/
+	
+	let httpRequest = null;
+	
+	function fnSubmit(){
+		httpRequest = new XMLHttpRequest(); 
+		let userNum = document.getElementById("userNum").value; 
+		
+		httpRequest.open("GET", "basic02.jsp?userNum="+userNum, true); 
+		httpRequest.onreadystatechange = fnCallBack; 
+		httpRequest.send(null); 
+	}
+	
+	function fnCallBack(){		
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200) {
+				let data = httpRequest.responseText;
+				let result = data.split(",");
+				document.getElementById("userName").value = result[0];
+				document.getElementById("userGender").value = result[1];
+				document.getElementById("userAddr").value = result[2];
+				document.getElementById("userTel").value = result[3];
+				
+			} else{
+				alert("무언가 잘못됐다." + httpRequest.status);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>회원 정보 조회</h2>
+	회원 번호 : <input type="text" name="userNum" id="userNum" onkeyup="fnSubmit()" /><br><br>
+	이름 : <input type="text" name="userName" id="userName" /><br><br>
+	성별 : <input type="text" name="userGender" id="userGender" /><br><br>
+	주소 : <input type="text" name="userAddr" id="userAddr" /><br><br>
+	전화번호 : <input type="text" name="userTel" id="userTel" /><br><br>
+	<iframe id="hiddenFrame" width="0" height="0"></iframe><!-- 서버와 데이터를 주고받기 위한 작은 공간-->
+</body>
+</html>
+

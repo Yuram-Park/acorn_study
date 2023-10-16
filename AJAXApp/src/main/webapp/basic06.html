@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    let httpRequest = null;
+    
+    function fnSubmit(){
+        httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", "basic06.jsp", true);
+        httpRequest.onreadystatechange = fnCallBack;
+        httpRequest.send();
+        
+        
+    }
+    
+    function fnCallBack(){
+        if(httpRequest.readyState == 4){
+            if(httpRequest.status == 200){
+                let xmlData = httpRequest.responseXML;
+                
+                let code = xmlData.getElementsByTagName("code").item(0).firstChild.nodeValue;
+                let data1 = xmlData.getElementsByTagName("data").item(0).firstChild.nodeValue;
+                
+                if(code == "success"){
+                    let data = eval("("+data1+")");
+                    
+                    document.getElementById("name").innerHTML = data.name;
+                    document.getElementById("id").innerHTML = data.id;
+                    document.getElementById("age").innerHTML = data.age;
+                    
+                }
+            }
+        }
+    }
+    
+    window.onload = function(){
+        fnSubmit();
+    }
+    
+</script>
+</head>
+<body>
+    <h1>정보</h1><br>
+    이름: <div id="name"></div><br>
+    아이디: <div id="id"></div><br>
+    나이: <div id="age"></div><br>
+    
+</body>
+</html>
