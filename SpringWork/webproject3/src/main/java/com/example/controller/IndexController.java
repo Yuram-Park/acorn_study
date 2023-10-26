@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 //}
 
 
-
+/*
 // annotation
 @Controller
 public class IndexController {
@@ -27,5 +27,8 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	
 }
+*/
+
+
+

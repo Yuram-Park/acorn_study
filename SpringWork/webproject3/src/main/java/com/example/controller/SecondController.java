@@ -12,7 +12,7 @@ public class SecondController extends AbstractController{
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		return new ModelAndView("result").addObject("msg", "SecondControll");
+		return new ModelAndView("two").addObject("msg", "SecondControll");
 	}
 	
 }

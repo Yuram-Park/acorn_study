@@ -3,13 +3,13 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  
-  <context-param><!-- ContextLoaderListener의 설정파일 -->
+<display-name>Archetype Created Web Application</display-name>
+<!-- 
+  <context-param> ContextLoaderListener의 설정파일
   	<param-name>contextConfigLocation</param-name> 
   	<param-value>/WEB-INF/spring/root-context.xml</param-value>
   </context-param>
-  
+ -->
   <filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
@@ -27,9 +27,11 @@
 	</filter-mapping>
   
   <!-- applicationContext.xml -->
+<!-- 
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+ -->
   
   <servlet>
         <servlet-name>app</servlet-name>
@@ -37,28 +39,20 @@
         <init-param>
         	<param-name>contextConfigLocation</param-name> <!-- DispatcherServlet의 setter metod 호출 -->
         	<param-value>
-        		/WEB-INF/spring/appServlet/beans-config.xml
-        		/WEB-INF/spring/appServlet/handler-config.xml
-        		/WEB-INF/spring/appServlet/resolver-config.xml
+        		/WEB-INF/spring/appServlet/servlet-context.xml
         	</param-value>
         </init-param>
     </servlet>
-    
-    <servlet> <!-- 두번째 컨테이너박스 -->
-        <servlet-name>webservice</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    </servlet>
-    
-    
+
     
     <servlet-mapping>
         <servlet-name>app</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+   
     <servlet-mapping>
-        <servlet-name>webservice</servlet-name>
-        <url-pattern>*.web</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
     </servlet-mapping>
-  
+ 
 </web-app>
