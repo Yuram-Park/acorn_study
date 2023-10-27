@@ -10,7 +10,9 @@ public class Board {
 	private Date bRegdate;
 	private int bViewcnt;
 	
+	
 	public Board(String bTitle, String bContent, String bWriter) {
+		super();
 		this.bTitle = bTitle;
 		this.bContent = bContent;
 		this.bWriter = bWriter;
