@@ -24,8 +24,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public Board read(int bNo) throws Exception {
-		
-		return null;
+		return sqlSession.selectOne(NAMESPACE + ".read", bNo);
 	}
 
 	@Override

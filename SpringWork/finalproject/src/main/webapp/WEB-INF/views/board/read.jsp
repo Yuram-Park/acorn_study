@@ -8,9 +8,12 @@
 </head>
 <body>
 	<h1>게시판 내용</h1>
-	<h4>제목</h4>
-	작성자:  | 작성날짜:  | 조회수: 
+	<h4>${board.bTitle }</h4>
+	작성자: ${board.bWriter} | 작성날짜: ${board.bRegdate} | 조회수: ${board.bViewcnt}
 	<hr>
-	내용
+	${board.bContent}
+	<hr>
+	<a href="<c:url value='/board/update'/>">수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="<c:url value='/board/delete'/>">삭제하기</a>
 </body>
 </html>

@@ -12,4 +12,10 @@
 	<select id="list" resultType="Board">
 		SELECT * FROM simpleBoard
 	</select>
+	<select id="read" parameterType="int" resultType="Board">
+		SELECT * FROM simpleBoard WHERE bNo=#{bNo}
+	</select>
+	<update id="update" parameterType="Board">
+		UPDATE simpleBoard SET bTitle=#{bTitle}, bContent=#{bContent}
+	</update>
 </mapper>

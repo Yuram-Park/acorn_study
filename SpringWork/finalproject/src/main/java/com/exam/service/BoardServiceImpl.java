@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board read(int bNo) throws Exception {
-		
-		return null;
+		Board board = boardDao.read(bNo);
+		return board;
 	}
 
 	@Override
