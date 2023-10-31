@@ -9,4 +9,8 @@
 		INSERT INTO simpleMember(id, email, password, name, regdate)
 		VALUES(seq_id.nextval, #{email}, #{password}, #{name}, sysdate)
 	</insert>
+	<select id="selectWithPass" parameterType="RegisterRequest" resultType="Member">
+		SELECT * FROM simpleMember
+		WHERE email = #{email} and password = #{password}
+	</select>
 </mapper>

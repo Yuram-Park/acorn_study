@@ -64,15 +64,15 @@
 		<li><a href=""><i class="fa fa-search"></i></a></li>
 	</ul>
 </div>
-<form action="<c:url value="/login/login"/>" method="post" onsubmit="return formCheck(this);">
+<form action="<c:url value="/member/login"/>" method="post" onsubmit="return formCheck(this);">
 	<h3 id="title">Login</h3>
 	<div id="msg">
 		<c:if test="${not empty param.msg}">
-			<i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
+			<i class="fa fa-exclamation-circle"> ${param.msg}</i>
 		</c:if>
 	</div>
-	<input type="text" name="id" value="${cookie.id.value}" placeholder="이메일 입력" autofocus>
-	<input type="password" name="pwd" placeholder="비밀번호">
+	<input type="text" name="email" value="${cookie.id.value}" placeholder="이메일 입력" autofocus required="required">
+	<input type="password" name="password" placeholder="비밀번호">
 	<input type="hidden" name="toURL" value="${param.toURL}">
 	<button>로그인</button>
 	<div>

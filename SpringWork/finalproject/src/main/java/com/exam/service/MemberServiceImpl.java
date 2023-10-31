@@ -27,8 +27,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member selectWithPass(String email, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Member member = memberDao.selectWithPass(email, password);
+		return member;
 	}
 
 }

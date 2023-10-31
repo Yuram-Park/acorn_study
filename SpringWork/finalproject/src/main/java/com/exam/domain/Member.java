@@ -9,6 +9,7 @@ public class Member {
 	private String name;
 	private Date regdate;
 	
+	public Member() {}
 	public Member(String email, String password, String name, Date regdate) {
 		this.email = email;
 		this.password = password;

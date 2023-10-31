@@ -28,4 +28,11 @@
 		<jsp prefix="/WEB-INF/views/"/>
 		<jsp suffix=".jsp"/>
 	</view-resolvers>
+	
+	
+	<!-- 사진 업로드 기능 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:property name="maxUploadSize" value="52428800" />
+	<beans:property name="defaultEncoding" value="utf-8" />
+</beans:bean>
 </beans:beans>

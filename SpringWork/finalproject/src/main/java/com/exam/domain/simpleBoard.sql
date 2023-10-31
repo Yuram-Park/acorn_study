@@ -20,3 +20,13 @@ CREATE TABLE simpleMember(
 	regdate date,
 	CONSTRAINT pk_email PRIMARY KEY(email)
 );
+
+CREATE TABLE simpleFile(
+	fileNo number primary key,
+	bNo number not null,
+	oFileName varchar2(500) not null,
+	cFileName varchar2(500) not null,
+	fileSize number
+);
+
+CREATE SEQUENCE seq_fileNo;
