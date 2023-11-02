@@ -18,4 +18,8 @@
 	<update id="update" parameterType="Board">
 		UPDATE simpleBoard SET bTitle=#{bTitle}, bContent=#{bContent}
 	</update>
+	<insert id="insertFile" parameterType="java.util.Map">
+		INSERT INTO simpleFile(fileNo, bNo, oFileName, cFileName, fileSize)
+		VALUES(seq_fileNo.nextval, #{BNO}, #{ORG_FILE_NAME}, #{STORED_FILE_NAME}, #{FILE_SIZE})
+	</insert>
 </mapper>

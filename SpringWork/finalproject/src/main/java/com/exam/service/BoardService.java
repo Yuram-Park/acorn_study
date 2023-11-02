@@ -11,7 +11,7 @@ import com.exam.domain.Board;
 public interface BoardService {
 	public List<Board> getList() throws Exception;
 	public Board read(int bNo) throws Exception;
-	public void write(Board board, MultipartFile file) throws Exception;
+	public void write(Board board, MultipartHttpServletRequest mpRequest) throws Exception;
 	public void update(Board board) throws Exception;
 	public void delete(int bNo) throws Exception;
 	public List<Map<String, Object>> insertFileInfo(Board board, MultipartHttpServletRequest mpRequest) throws Exception;

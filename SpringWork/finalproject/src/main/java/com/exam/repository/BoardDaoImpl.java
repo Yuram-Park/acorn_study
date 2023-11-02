@@ -1,8 +1,8 @@
 package com.exam.repository;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +43,12 @@ public class BoardDaoImpl implements BoardDao {
 	public int delete(int bNo) throws Exception {
 		return 0;
 
+	}
+
+	@Override
+	public void insertFile(Map<String, Object> map) throws Exception {
+		sqlSession.insert(NAMESPACE +".insertFile", map);
+		
 	}
 
 }

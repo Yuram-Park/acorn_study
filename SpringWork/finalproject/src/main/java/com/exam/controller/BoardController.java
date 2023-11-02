@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.exam.domain.Board;
@@ -47,8 +48,8 @@ public class BoardController{
 	}
 	
 	@PostMapping("/write")
-	public String write(@ModelAttribute Board board) throws Exception {
-		boardSvc.write(board);	
+	public String write(@ModelAttribute Board board, MultipartHttpServletRequest mpRequest) throws Exception {
+		boardSvc.write(board, mpRequest);	
 		return "redirect:/board/list";
 	}
 	

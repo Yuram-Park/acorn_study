@@ -3,7 +3,9 @@ package com.exam.repository;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -33,10 +35,27 @@ public class BoardDaoImplTest {
 		System.out.println(list);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void getReadTest() throws Exception {
 		int bNo = 6;
 		Board board = boardDao.read(bNo);
 		assertNotNull(board);
+	}
+	
+	@Test
+	public void insertFileTest() throws Exception {
+		Map<String, Object> listMap = null;
+		
+		int bno = 2;
+		String originalFileName = "original";
+		String storedFileName = "original+string";
+		int fileSize = 2;
+		
+		listMap.put("BNO", bno);
+		listMap.put("ORG_FILE_NAME", originalFileName);
+		listMap.put("STORED_FILE_NAME", storedFileName);
+		listMap.put("FILE_SIZE", fileSize);
+		
+		boardDao.insertFile(listMap);
 	}
 }

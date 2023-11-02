@@ -1,6 +1,7 @@
 package com.exam.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.exam.domain.Board;
 
@@ -10,4 +11,5 @@ public interface BoardDao {
 	public int write(Board board) throws Exception;
 	public int update(Board board) throws Exception;
 	public int delete(int bNo) throws Exception;
+	public void insertFile(Map<String, Object> map) throws Exception;
 }

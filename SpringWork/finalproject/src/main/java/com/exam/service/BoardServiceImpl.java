@@ -15,11 +15,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.exam.domain.Board;
 import com.exam.repository.BoardDao;
+import com.exam.util.FileUtils;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao boardDao; //setter메서드가 자동으로 만들어짐
+	
+	@Autowired
+	private FileUtils fileUtils;
 	
 	private static final String filePath="C:\\netsong7\\img";
 
@@ -36,8 +40,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void write(Board board, MultipartFile file) throws Exception {
+	public void write(Board board, MultipartHttpServletRequest mpRequest) throws Exception {
 		boardDao.write(board);
+		
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(board, mpRequest); 
+		int size = list.size();
+		for(int i=0; i<size; i++){ 
+			boardDao.insertFile(list.get(i)); 
+		}
 
 	}
 
@@ -84,10 +94,10 @@ public class BoardServiceImpl implements BoardService {
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("BNO", bNo);
-				listMap.put("ORG_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName);
-				listMap.put("FILE_SIZE", multipartFile.getSize());
+				listMap.put("bNo", bNo);
+				listMap.put("oFileName", originalFileName);
+				listMap.put("cFileName", storedFileName);
+				listMap.put("fileSize", multipartFile.getSize());
 				list.add(listMap);
 			}
 		}
