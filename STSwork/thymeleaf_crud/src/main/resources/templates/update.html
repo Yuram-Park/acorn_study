@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원 수정</h1>
+	<form method="post" action="/update">
+		번호 : <input type="text" name="num" th:value="${num}" readonly/><br>
+		이름 : <input type="text" name="name" th:placeholder="${name}"/><br>
+		주소 : <input type="text" name="addr" th:placeholder="${addr}"/><br>
+		<input type="submit" value="등록"/>
+	</form>
+</body>
+</html>

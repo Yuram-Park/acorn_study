@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>condition 조건부 평가</h1>
+	<hr/>
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${userStat.count}"></td>
+			<td th:text="${user.userName}">데이터 없음</td>
+			<td>
+				<span th:text="${user.age}">0</span>
+				<span th:text="'미성년자'" th:if="${user.age lt 20}"></span>
+				<span th:text="'미성년자'" th:unless="${user.age ge 20}"></span>
+			</td>
+		</tr>
+	</table>
+	
+	<br>
+	
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${userStat.count}"></td>
+			<td th:text="${user.userName}">데이터 없음</td>
+			<td th:switch="${user.age}">
+				<span th:case="10">10살</span>
+				<span th:case="20">20살</span>
+				<span th:case="*">기타</span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spring EL</h1>
+	<hr/>
+	
+	<ul>Object
+		<li>[[${user.getUserName()}]]</li>
+		<li>[[${user.userName}]]</li>
+		<li>[[${user['userName']}]]</li>
+	</ul>
+	
+	<hr/>
+	
+	<ul>List
+		<li>[[${users[0].getUserName()}]]</li>
+		<li>[[${users[0].userName}]]</li>
+		<li>[[${users[0]['userName']}]]</li>
+	</ul>
+	
+	<hr/>
+	
+	<ul>Map
+		<li>[[${userMap.userA.userName}]]</li>
+		<li>[[${userMap.userA.age}]]</li>
+		<li><span th:text="${userMap.userB.userName}"></span></li>
+		<li><span th:text="${userMap.userB.age}"></span></li>
+	</ul>
+	
+	<div th:with="item=${users[0]}">
+		<ul>
+			<li>이름: <span th:text="${item.userName}"></span></li>
+			<li>나이: [[${item.age}]]</li>
+		</ul>
+	</div>
+</body>
+</html>
+
+
