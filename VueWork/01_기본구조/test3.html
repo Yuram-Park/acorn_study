@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test3</title>
+    <!-- JQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Vue CDN-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!--아이디로 하는 것이 일반적이다 -->
+    <div id="app">
+        <h2>기본 구조</h2>
+        {{message}}
+    </div>
+    <div id="jquery">
+        <h2>JQuery로 출력한 내용</h2>
+        <p class="sub1"></p>
+    </div>
+    <script>
+        const {createApp} = Vue
+
+        createApp({
+            data  : function(){
+                return{ message : "Hello Vue2~~" }
+            }
+        }).mount('#app')
+        // sub1에 접근해서 p태그 사이에 내용을 출력하려고 한다.
+        //$() = document.get....id/tag뭐든 될 수 있어
+        //테스트를 위함이거나 정말 특별한 경우가 아니라면 혼용해서 사용하지 않는다.
+        $(".sub1").html("안녕하세요. 이 내용은 jQuery로 만들어졌습니다.")
+    </script>
+</body>
+</html>

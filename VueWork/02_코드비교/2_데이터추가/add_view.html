@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_view</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul class="list">
+            <li v-for="user in data.list">name : {{user}}</li>
+        </ul>
+        <div>
+            <p>데이터 추가</p>
+            <p>
+                <!-- vue에서 접근할 수 있는 속성 v-model="" -->
+                <span>name:<input type="text" class="user-name" v-model="newUser"></span><br>
+            <p>
+                <button class="btn-add-user" v-on:click="addUser"> 추가</button>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var data = {
+            list:["user01", "user02", "user03"],
+            newUser:""
+        }
+
+        const {createApp} = Vue
+        createApp({
+            data(){
+                return {data : data};
+            },
+            methods : {
+                addUser : function(){
+                   this.data.list.push(this.newUser) 
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

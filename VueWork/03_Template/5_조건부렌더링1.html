@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+   <h1> v-show </h1>
+   <ul>
+        <li>보이기, 숨기기(display:*, display:"none")</li>
+        <li>태그는 삭제하지 않고 그대로 존재</li>
+   </ul>
+   <div id="app">
+        <button @click="onToggle">토글</button>
+        <div v-show="visible">
+            보이고 숨기기
+        </div>
+   </div>
+    <script>
+        const {createApp} = Vue
+        createApp({
+            data(){
+                return {visible : true}
+            },
+            methods : {
+                onToggle(){
+                    this.visible = !this.visible
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

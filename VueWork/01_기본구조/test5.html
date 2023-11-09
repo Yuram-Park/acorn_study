@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test5</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <h1>LifeCycle</h1>
+    <!--뷰의 객체를 생성하는 것이 중요하다. -->
+    <div>
+        <h2>기본 구조</h2>
+        <p id="app1">
+            name={{name}}, count={{count}}
+        </p>
+    </div>
+    <script>
+        const {createApp} = Vue
+        // 1) 만들어져있는 기본 function을 사용하는것 
+        createApp({
+            data  : function(){
+                return{ name : "Vue!", count : 0 }
+            },
+            //LifeCycler과 관련된 메서드, 순서는 상관없어요
+            beforeCreate : function(){
+                // this. 현재 사용 중인 객체의 주소
+                console.log("1. befroeCreate = ", this.name)
+            },
+            // 가장 많이 사용
+            created : function(){
+                console.log("2. Create = ", this.name)
+            },
+            beforeMount : function(){
+                console.log("3. befroeMount = ", this.name)
+            }, 
+            mounted : function(){
+                console.log("4. mounted = ", this.name)
+            },
+            beforeUpdate : function(){
+                console.log("11. befroeUpdate = ", this.name)
+            },
+            updated : function(){
+                console.log("12. updated = ", this.name)
+            },
+            // F12눌러서 콘솔에 나오는지 확인 -> update된것은 없기떄문에 update들은 에러가 뜸
+            // 2) 그렇다면 내 마음대로 메서드를 만들 수 없는가? -> methods : {} 사용
+            methods : {
+                // 3) 내 마음대로 만드는 함수 test : function(){}
+               test : function(){
+                    // setTimeout(,) / 자동 반복하려면 setInterval(,)
+                    // 화살표 함수사용
+                    setInterval(함수, 500)
+               } 
+            }
+        }).mount('#app1')
+    </script>
+</body>
+</html>

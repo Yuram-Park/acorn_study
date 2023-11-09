@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!--뷰의 객체를 생성하는 것이 중요하다. -->
+    <div id="app">
+        <h2>기본 구조</h2>
+        <!--vue에서 처리한 결과를 보여줄 위치 {{}}-->
+        {{message}}
+    </div>
+    <!-- vue 준비 : js의 확장-->
+    <!--
+    <script>
+        // vue의 시작 Vue.createApp({처리할 코드를 작성 | 키 : 값})
+        // data라는 키가 전달을 도와줄 것이다.
+        // .mount('#app') : 어디에 결과를 뿌려줄지(#아이디 | .클래스)
+        Vue.createApp({
+            data  : function(){
+                return{ message : "Hello Vue" }
+            }
+        }).mount('#app')
+    </script>
+    -->
+    <script>
+        // 변수 선언
+         // 직접 vue를 사용하지 않고, vue라는 객체를 통해서
+        const {createApp} = Vue
+
+        createApp({
+            data  : function(){
+                return{ message : "Hello Vue" }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

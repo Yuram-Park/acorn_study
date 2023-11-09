@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <h2>심플 메모장</h2>
+   
+   <div id="app">
+        <div>
+            <span>name : <input type="text" class="memo-name" v-model="newMemo" @keydown.enter="addMemo"/></span>
+            <template v-if="state == 'add'">
+                <button class="btn-add-memo" @click="addMemo">추가</button>
+            </template>
+
+            <template v-if="state=='update'">
+                <button class="btn-add-memo" @click="okMemo">적용</button>
+                <button class="btn-add-memo" @click="cancelMemo">취소</button>
+            </template>
+        </div>
+        <div class="list">
+            <ul>
+                <li v-for="(memo, index) in list" :key="index">메모 = {{memo}} 
+                    <button v-on:click="deleteMemo(index)">삭제</button>
+                    <button v-on:click="updateMemo(index, memo)">수정</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const EDIT_MODE = {
+            UPDATE : "update",
+            ADD : "add"
+        }
+        
+        let data = {
+            list : ["memo1", "memo2", "memo3"],
+            newMemo : "",
+            state : EDIT_MODE.ADD,
+            updateMemoIndex : -1
+        }
+        const {createApp} = Vue
+        createApp({
+            data(){
+                return data;
+            },
+            methods: {
+                addMemo(){
+                    if(this.newMemo.length == 0){
+                        alert("내용을 입력해주세요.")
+                        return;
+                    }
+                    this.list.push(this.newMemo)
+                },
+                deleteMemo(targetMemo){
+                    /*
+                    
+                    let index = this.list.findIndex((memo)=>{
+                       return memo == targetMemo;
+                    })
+                    if(index !=  -1){
+                        this.list.splice(index, 1);
+                    }
+                    */
+                   this.list.splice(targetMemo, 1);
+                },
+                updateMemo(index, targetMemo){
+                    this.newMemo = targetMemo;
+                    this.updateMemoIndex = index;
+                    this.state = EDIT_MODE.UPDATE
+                },
+                cancelMemo(){
+                    this.state=EDIT_MODE.ADD
+                },
+                okMemo(){
+                    if(this.state == EDIT_MODE.UPDATE){
+                        this.list[this.updateMemoIndex] = this.newMemo;
+                        this.state=EDIT_MODE.ADD;
+                        this.newMemo="";
+                        this.updateMemoIndex = -1;
+                    }
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

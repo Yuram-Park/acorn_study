@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+    <!-- CDN에서 Vue 사용-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+   <h1> v-if </h1>
+   
+   <div id="app">
+        <button @click="onToggle">토글</button>
+        <template v-if="visible">
+            <div>test1</div> <!--아예 태그가 사라짐-->
+            <div>test2</div>
+            <div>test3</div>
+        </template>
+        <template v-else>
+            <div>else test1</div>
+            <div>else test2</div>
+            <div>else test3</div>
+        </template>
+
+        <br><hr><br>
+
+        <div id="hakjum">
+            <div>
+                점수 입력 : <input type="text" v-model="value"/>
+            </div>
+            
+            <div v-if="value == 'A'">A 입니다.</div>
+            <div v-else-if="value == 'B'">B 입니다.</div>
+            <div v-else-if="value == 'C'">C 입니다.</div>
+            <div v-else-if="value == 'D'">D 입니다.</div>
+            <div v-else>해당하는 값이 없습니다.</div>
+            
+        </div>
+   </div>
+    <script>
+        const {createApp} = Vue
+        createApp({
+            data(){
+                return {visible : true, value:""}
+            },
+            methods : {
+                onToggle(){
+                    this.visible = !this.visible
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
