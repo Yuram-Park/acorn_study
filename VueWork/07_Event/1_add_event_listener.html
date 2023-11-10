@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+    <style>
+        .active{
+            border: 4px solid #f00;
+        }
+        .active2{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="addCount($event)">실행</button><!--전역변수-->
+        <button @click="count+=2">실행2</button>
+        <div>
+            count = {{count}}
+        </div>
+    </div>
+    <script>
+        const {createApp} = Vue
+        createApp({
+            data(){
+                return {count : 1};
+            },
+            methods : {
+                addCount(){
+                    this.count++;
+                    console.log("count:", event);
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
