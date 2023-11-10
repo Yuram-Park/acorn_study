@@ -40,6 +40,7 @@
         	<param-name>contextConfigLocation</param-name> <!-- DispatcherServlet의 setter metod 호출 -->
         	<param-value>
         		/WEB-INF/spring/appServlet/servlet-context.xml
+        		/WEB-INF/spring/appServlet/context-common.xml
         	</param-value>
         </init-param>
     </servlet>

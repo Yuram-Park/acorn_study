@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.exam.domain.Board;
+import com.exam.domain.BoardImageDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -46,9 +47,14 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public void insertFile(Map<String, Object> map) throws Exception {
-		sqlSession.insert(NAMESPACE +".insertFile", map);
+	public void insertFile(BoardImageDto boardImageDto) throws Exception {
+		sqlSession.insert(NAMESPACE +".insertBoardImage", boardImageDto);
 		
+	}
+
+	@Override
+	public List<BoardImageDto> selectBoardImage(int bNo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".selectBoardImage", bNo);
 	}
 
 }

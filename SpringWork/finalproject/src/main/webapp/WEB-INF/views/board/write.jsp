@@ -30,7 +30,8 @@
 		내용: <textarea rows="5" cols="50" name="bContent"></textarea><br><br>
 		<div class="form-group" style="height: 150px; width: 200px;">
 			<label>이미지 파일 첨부</label>
-			<input type="file" name="imgFile" onchange="readURL(this);"/>
+			<!--  multiple= 여러개 선택 가능 , accept= default 이미지를 파일로 설정 -->
+			<input type="file" name="boardFiles" multiple="multiple" accept="image/*"/>
 			<img id="preview" src="#" width=200 height=150 alt="선택된 이미지가 없습니다."/>
 			<input type="submit" value="글쓰기"/>
 		</div>

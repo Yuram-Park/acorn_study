@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class BoardDaoImplTest {
 	
 	@Test
 	public void insertFileTest() throws Exception {
-		Map<String, Object> listMap = null;
+		Map<String, Object> listMap = new HashMap();
 		
 		int bno = 2;
 		String originalFileName = "original";

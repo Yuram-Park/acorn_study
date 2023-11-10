@@ -9,5 +9,7 @@
 		<typeAlias type="com.exam.domain.Board" alias="Board"/>
 		<typeAlias type="com.exam.domain.RegisterRequest" alias="RegisterRequest"/>
 		<typeAlias type="com.exam.domain.Member" alias="Member"/>		
+		<typeAlias type="com.exam.domain.Mp_File" alias="Mp_File"/>
+		<typeAlias type="com.exam.domain.BoardImageDto" alias="BoardImageDto"/>
 	</typeAliases>
 </configuration>

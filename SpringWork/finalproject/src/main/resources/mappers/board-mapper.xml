@@ -5,9 +5,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.exam.mybatis.boardMapper">
-	<insert id="write" parameterType="Board">
+	<insert id="write" parameterType="Board" useGeneratedKeys="true" keyProperty="bNo">
+		<selectKey keyProperty="bNo" resultType="int" order="BEFORE">
+			SELECT seq_bNo.nextval FROM DUAL
+		</selectKey>
 		INSERT INTO simpleBoard(bNo, bTitle, bWriter, bContent)
-		VALUES(seq_bNo.nextval, #{bTitle}, #{bWriter}, #{bContent})
+		VALUES(#{bNo}, #{bTitle}, #{bWriter}, #{bContent})
 	</insert>
 	<select id="list" resultType="Board">
 		SELECT * FROM simpleBoard
@@ -18,8 +21,17 @@
 	<update id="update" parameterType="Board">
 		UPDATE simpleBoard SET bTitle=#{bTitle}, bContent=#{bContent}
 	</update>
-	<insert id="insertFile" parameterType="java.util.Map">
-		INSERT INTO simpleFile(fileNo, bNo, oFileName, cFileName, fileSize)
-		VALUES(seq_fileNo.nextval, #{BNO}, #{ORG_FILE_NAME}, #{STORED_FILE_NAME}, #{FILE_SIZE})
+	<insert id="insertBoardImage" parameterType="BoardImageDto">
+		INSERT INTO board_image VALUES(
+			SEQ_MP_FILE_NO.NEXTVAL,
+			seq_bNo.currval,
+			#{original_filename},
+			#{link}
+		)
 	</insert>
+	
+	<!-- 첨부파일 조회 -->
+	<select id="selectBoardImage" parameterType="int" resultType="BoardImageDto">
+		SELECT * FROM board_image WHERE board_id = #{BNO}
+	</select>
 </mapper>

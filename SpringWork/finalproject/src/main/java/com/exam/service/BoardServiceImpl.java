@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.exam.domain.Board;
+import com.exam.domain.BoardImageDto;
+import com.exam.domain.Mp_File;
 import com.exam.repository.BoardDao;
 import com.exam.util.FileUtils;
 
@@ -22,7 +26,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao boardDao; //setter메서드가 자동으로 만들어짐
 	
-	@Autowired
+	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
 	
 	private static final String filePath="C:\\netsong7\\img";
@@ -40,10 +44,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void write(Board board, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(Board board, MultipartFile[] boardFiles) throws Exception {
 		boardDao.write(board);
 		
-		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(board, mpRequest); 
+		List<BoardImageDto> list = fileUtils.parseInsertFileInfo(board, boardFiles); 
 		int size = list.size();
 		for(int i=0; i<size; i++){ 
 			boardDao.insertFile(list.get(i)); 
@@ -107,6 +111,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public String getRandomString() throws Exception {
 		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
+	@Override
+	public List<BoardImageDto> selectBoardImage(int bNo) throws Exception {
+		return boardDao.selectBoardImage(bNo);
 	}
 
 	
