@@ -15,7 +15,7 @@
 	${board.bContent}
 	<hr>
 	<c:forEach items="${boardImageDtoList}" var="boardImageDto">
-		<img src="<c:url value='/images/${boardImageDto.link}'/>"/>
+		<img src="<c:url value='/img/${boardImageDto.link}'/>"/>
 	</c:forEach>
 	<hr>
 	<a href="<c:url value='/board/update'/>">수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;

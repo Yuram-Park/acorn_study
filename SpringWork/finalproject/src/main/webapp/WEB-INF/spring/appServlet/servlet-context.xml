@@ -16,7 +16,7 @@
 	
 	<!-- Front-End Resources -->
 	<resources location="/resources/" mapping="/**" />
-	<!-- <resources location="file:///C:/uploadFiles/" mapping="/images/**" />-->
+	<resources location="C:/uploadFiles" mapping="/img/**" />
 	
 	
 	

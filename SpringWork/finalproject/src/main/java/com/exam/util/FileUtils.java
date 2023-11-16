@@ -18,7 +18,7 @@ import com.exam.domain.BoardImageDto;
 @Component("fileUtils")
 public class FileUtils {
 	// 파일 저장할 경로 지정
-	private static final String filePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\static\\files\\";
+	private static final String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files\\";
 	
 	public List<BoardImageDto> parseInsertFileInfo(Board board, MultipartFile[] boardFiles) throws Exception{
 		
@@ -31,7 +31,7 @@ public class FileUtils {
 					continue;
 				}
 				
-				String rootFolder ="C:/uploadFiles/";
+				String rootFolder = "C:/uploadFiles/";
 				
 				// 날짜별 폴더 생성
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
